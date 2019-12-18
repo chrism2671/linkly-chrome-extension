@@ -1,6 +1,6 @@
 {
   "name": "Linkly for Google Chrome",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Click tracking software",
   "manifest_version": 2,
   "background": {
@@ -10,12 +10,12 @@
   "icons": { "16": "icon16.png",
              "48": "icon48.png",
             "128": "icon128.png" },
-  "permissions": [
-          "tabs"
-        ],
+  "permissions": ["tabs"],
   "browser_action": {
-      "default_title": "Create Linkly Link",
-      "default_icon": "icon16.png"
+    "default_title": "Create Linkly Link",
+    "default_icon": "icon16.png"
+  },
+  "externally_connectable": {
+    "matches": ["https://*.linklyhq.com/*"]
   }
-
 }
