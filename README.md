@@ -11,6 +11,7 @@
 ## Features
 
 - **One-Click Link Creation** - Turn any webpage into a trackable Linkly link instantly
+- **Right-Click to Shorten** - Right-click any link on a page and choose **Shorten with Linkly**
 - **Click Tracking & Analytics** - Monitor link performance with detailed analytics
 - **Custom URL Shortening** - Create branded short links on the fly
 - **Cross-Browser Support** - Available for Chrome, Firefox, and Safari
@@ -48,11 +49,14 @@
 3. **Create** your trackable link with custom settings
 4. **Share** and monitor performance via your Linkly dashboard
 
+To shorten a link that is on a page rather than the page itself, right-click it and choose **Shorten with Linkly**.
+
 ## Permissions & Privacy
 
 The Linkly extension requests minimal permissions:
 
 - **Active Tab** - Only accesses the current tab's URL when you click the button
+- **Context Menus** - Adds the "Shorten with Linkly" right-click item; the extension only receives the URL of the link you right-click and choose it on
 - **No Background Tracking** - The extension does not track your browsing history
 - **No Data Collection** - We only process the URL you choose to shorten
 

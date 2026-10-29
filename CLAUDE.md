@@ -18,4 +18,6 @@
 - **Comments**: Document non-obvious functionality and permission usage
 
 ## Architecture Notes
-This simple extension opens the Linkly web app with current tab URL when clicked.
+This simple extension opens the Linkly web app with the URL to shorten. Two entry points, both going through `openLinkCreator()` in `background.js` (which URL-encodes the value):
+- Toolbar button: the current tab URL (`activeTab` permission).
+- Right-click menu "Shorten with Linkly" on links: the clicked link's URL (`contextMenus` permission). The menu is registered in `runtime.onInstalled`.
