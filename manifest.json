@@ -9,16 +9,25 @@
   },
   "icons": {
     "16": "icon16.png",
+    "32": "icon32.png",
     "48": "icon48.png",
     "128": "icon128.png"
   },
-  "permissions": ["activeTab", "contextMenus"],
+  "permissions": [
+    "activeTab",
+    "contextMenus"
+  ],
   "action": {
     "default_title": "Create Linkly Link",
-    "default_icon": "icon16.png"
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png"
+    }
   },
   "externally_connectable": {
-    "matches": ["https://*.linklyhq.com/*"]
+    "matches": [
+      "https://*.linklyhq.com/*"
+    ]
   },
   "browser_specific_settings": {
     "safari": {
