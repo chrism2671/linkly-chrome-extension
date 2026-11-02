@@ -153,16 +153,23 @@ function sleep(ms) {
 // stored); falls back to an OAuth client + refresh token from scripts/cws-auth.mjs.
 async function chromeAccessToken() {
   if (process.env.CWS_SERVICE_ACCOUNT) {
-    return execFileSync(
-      'gcloud',
-      [
-        'auth',
-        'print-access-token',
-        `--impersonate-service-account=${process.env.CWS_SERVICE_ACCOUNT}`,
-        `--scopes=${CWS_SCOPE}`,
-      ],
-      { encoding: 'utf8' }
-    ).trim();
+    // `gcloud --impersonate-service-account` ignores --scopes, so ask the IAM
+    // Credentials API for a token with the Web Store scope directly.
+    const userToken = execFileSync('gcloud', ['auth', 'print-access-token'], {
+      encoding: 'utf8',
+    }).trim();
+    const minted = await request(
+      `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${process.env.CWS_SERVICE_ACCOUNT}:generateAccessToken`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ scope: [CWS_SCOPE] }),
+      }
+    );
+    return minted.accessToken;
   }
   need('CWS_CLIENT_ID', 'CWS_CLIENT_SECRET', 'CWS_REFRESH_TOKEN');
   const token = await request('https://oauth2.googleapis.com/token', {
