@@ -42,6 +42,7 @@ const FIREFOX_DATA_COLLECTION = { required: ['none'] };
 const FIREFOX_MIN_VERSION = '128.0';
 
 const CWS_API = 'https://chromewebstore.googleapis.com';
+const CWS_SCOPE = 'https://www.googleapis.com/auth/chromewebstore';
 const AMO_API = 'https://addons.mozilla.org/api/v5';
 
 function parseArgs(argv) {
@@ -148,14 +149,22 @@ function sleep(ms) {
   });
 }
 
-async function releaseChrome(zipPath, args) {
-  need(
-    'CWS_CLIENT_ID',
-    'CWS_CLIENT_SECRET',
-    'CWS_REFRESH_TOKEN',
-    'CWS_PUBLISHER_ID',
-    'CWS_EXTENSION_ID'
-  );
+// Prefers a service account (impersonated through gcloud, so no key or secret is
+// stored); falls back to an OAuth client + refresh token from scripts/cws-auth.mjs.
+async function chromeAccessToken() {
+  if (process.env.CWS_SERVICE_ACCOUNT) {
+    return execFileSync(
+      'gcloud',
+      [
+        'auth',
+        'print-access-token',
+        `--impersonate-service-account=${process.env.CWS_SERVICE_ACCOUNT}`,
+        `--scopes=${CWS_SCOPE}`,
+      ],
+      { encoding: 'utf8' }
+    ).trim();
+  }
+  need('CWS_CLIENT_ID', 'CWS_CLIENT_SECRET', 'CWS_REFRESH_TOKEN');
   const token = await request('https://oauth2.googleapis.com/token', {
     method: 'POST',
     body: new URLSearchParams({
@@ -165,7 +174,12 @@ async function releaseChrome(zipPath, args) {
       grant_type: 'refresh_token',
     }),
   });
-  const headers = { Authorization: `Bearer ${token.access_token}` };
+  return token.access_token;
+}
+
+async function releaseChrome(zipPath, args) {
+  need('CWS_PUBLISHER_ID', 'CWS_EXTENSION_ID');
+  const headers = { Authorization: `Bearer ${await chromeAccessToken()}` };
   const item = `publishers/${process.env.CWS_PUBLISHER_ID}/items/${process.env.CWS_EXTENSION_ID}`;
 
   console.log('Chrome: uploading', basename(zipPath));
