@@ -82,6 +82,8 @@ node scripts/release.mjs             # upload and submit both for review
 
 Requires Node 18+. Both stores still review the release before it goes live.
 
+One-time Chrome setup: in Google Cloud, enable the Chrome Web Store API and create an OAuth client of type "Desktop app", put its ID and secret in `.env` as `CWS_CLIENT_ID` / `CWS_CLIENT_SECRET`, then run `node scripts/cws-auth.mjs` and approve access as the account that owns the Web Store listing. It saves `CWS_REFRESH_TOKEN` to `.env`. Keep the OAuth consent screen's publishing status at "In production" (or "Internal"), otherwise the refresh token expires after 7 days.
+
 ### Build for Safari
 
 1. Open `Linkly/Linkly.xcodeproj` in Xcode
