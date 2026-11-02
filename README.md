@@ -70,6 +70,18 @@ Your privacy is our priority. Read our full [Privacy Policy](https://linklyhq.co
 zip -r package.zip manifest.json background.js icon16.png icon48.png icon128.png waves-large.png waves-pink.png
 ```
 
+### Release to the Chrome Web Store and Firefox Add-ons
+
+Bump `version` in `manifest.json`, commit, then:
+
+```bash
+cp .env.example .env   # first time only; add your store API credentials
+node scripts/release.mjs --dry-run   # build both zips into dist/
+node scripts/release.mjs             # upload and submit both for review
+```
+
+Requires Node 18+. Both stores still review the release before it goes live.
+
 ### Build for Safari
 
 1. Open `Linkly/Linkly.xcodeproj` in Xcode

@@ -1,6 +1,10 @@
 # Build artifacts
 package.zip
 *.zip
+dist/
+
+# Store credentials for scripts/release.mjs
+.env
 
 # Xcode user-specific
 Linkly/Linkly.xcodeproj/xcuserdata/

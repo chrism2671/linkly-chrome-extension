@@ -2,6 +2,7 @@
 
 ## Development Commands
 - **Build Extension**: zip -r package.zip manifest.json background.js icon16.png icon48.png icon128.png waves-large.png waves-pink.png
+- **Release**: `node scripts/release.mjs` builds the Chrome + Firefox zips (Firefox gets its own manifest), asks for confirmation, then uploads and submits both for review. Needs credentials in `.env` (copy `.env.example`). `--dry-run` builds only; `--chrome-only` / `--firefox-only`; `--no-publish` leaves Chrome as a draft. Bump `version` in manifest.json and commit first. Safari is still a manual Xcode release.
 - **Install Locally**: Load unpacked extension via chrome://extensions (developer mode)
 - **Test**: Manual testing in Chrome - click the extension button to create links
 - **Firefox Build**: Update manifest.json per Firefox requirements before packaging
