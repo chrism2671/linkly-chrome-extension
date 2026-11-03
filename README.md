@@ -3,7 +3,7 @@
 **Create trackable short links instantly from any webpage.** The official Linkly browser extension for Chrome, Firefox, and Safari makes link tracking and URL shortening effortless.
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Install-blue?style=for-the-badge&logo=google-chrome)](https://chrome.google.com/webstore/detail/linkly-for-google-chrome/eafdoeojplandfjbmjkglljhlckoajcg)
-[![Firefox Add-ons](https://img.shields.io/badge/Firefox-Install-orange?style=for-the-badge&logo=firefox)](https://addons.mozilla.org/firefox/)
+[![Firefox Add-ons](https://img.shields.io/badge/Firefox-Install-orange?style=for-the-badge&logo=firefox)](https://addons.mozilla.org/en-GB/firefox/addon/linkly/)
 [![Mac App Store](https://img.shields.io/badge/Safari-Install-black?style=for-the-badge&logo=safari)](https://apps.apple.com/)
 
 ---
@@ -29,7 +29,7 @@
 
 ### Firefox
 
-1. Visit [Firefox Add-ons](https://addons.mozilla.org/firefox/)
+1. Visit [Firefox Add-ons](https://addons.mozilla.org/en-GB/firefox/addon/linkly/)
 2. Click **Add to Firefox**
 3. Sign in to your [Linkly account](https://linklyhq.com)
 4. Click the Linkly icon to start creating tracked links
@@ -50,6 +50,8 @@
 4. **Share** and monitor performance via your Linkly dashboard
 
 To shorten a link that is on a page rather than the page itself, right-click it and choose **Shorten with Linkly**. If the URL is plain text rather than a hyperlink (for example in an AI chat reply), highlight it and right-click the selection instead.
+
+![The Shorten with Linkly option in the browser's right-click menu](docs/right-click-menu.png)
 
 ## Permissions & Privacy
 
